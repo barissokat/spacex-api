@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Capsule;
+use App\Events\DataSynchronized;
 use App\Mission;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -40,6 +41,8 @@ class GetAllDataX extends Command
      */
     public function handle()
     {
+        Log::channel('datasync')->info('Database will synchronize with spacex api.');
+
         $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.spacexdata.com/v3/']);
 
         $response = $client->request('GET', 'capsules');
@@ -72,5 +75,7 @@ class GetAllDataX extends Command
                 }
             }
         }
+
+        DataSynchronized::dispatch($data_capsules);
     }
 }

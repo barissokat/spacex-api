@@ -99,6 +99,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'datasync' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/datasync.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];
