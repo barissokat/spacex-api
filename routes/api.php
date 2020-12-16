@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('capsules', ['as' => 'capsules.index', 'uses' => 'Api\CapsuleController@index']);
+Route::get('capsules/{capsule_serial}', ['as' => 'capsules.show', 'uses' => 'Api\CapsuleController@show']);
