@@ -22,4 +22,9 @@ class Capsule extends Model
     {
         return $this->hasMany(Mission::class);
     }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
